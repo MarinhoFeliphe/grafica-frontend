@@ -32,7 +32,7 @@ export class CategoriasPage {
 
   }
 
-  showProdutos() {
-    this.navCtrl.push('ProdutosPage');
+  showProdutos(id_categoria : string) {
+    this.navCtrl.push('ProdutosPage', { categoria_id : id_categoria });
   }
 }
