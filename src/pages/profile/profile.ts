@@ -17,7 +17,7 @@ export class ProfilePage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public storage: StorageService,
-              public clienteSevice: ClienteService) {
+              public clienteService: ClienteService) {
   }
 
   ionViewDidLoad() {
@@ -25,9 +25,9 @@ export class ProfilePage {
     let localUser = this.storage.getLocalUser();
 
     if(localUser && localUser.email) {
-      this.clienteSevice.findByEmail(localUser.email)
+      this.clienteService.findByEmail(localUser.email)
       .subscribe(response => {
-        this.cliente = response;
+        this.cliente = response as ClienteDTO;
         this.getImageIfExists();
       },
       error => {
@@ -42,7 +42,7 @@ export class ProfilePage {
   }
 
   getImageIfExists() {
-    this.clienteSevice.getImageFromBucket(this.cliente.id)
+    this.clienteService.getImageFromBucket(this.cliente.id)
     .subscribe(response => {
       this.cliente.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.cliente.id}.jpg`;
     },
