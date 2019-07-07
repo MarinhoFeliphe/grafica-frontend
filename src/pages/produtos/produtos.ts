@@ -11,7 +11,8 @@ import { API_CONFIG } from '../../config/api.config';
 })
 export class ProdutosPage {
 
-  items : ProdutoDTO[];
+  items : ProdutoDTO[] = [];
+  page : number = 0;
 
   constructor(public navCtrl: NavController
             , public navParams: NavParams
@@ -29,19 +30,23 @@ export class ProdutosPage {
     let loader = this.presentLoading();
   
     this.produtoService
-      .findByCategorias(categoria_id)
+      .findByCategorias(categoria_id, this.page, 10)
       .subscribe(response => {
-        this.items = response['content'];
-        this.loadImageUrls();
+        let start: number = this.items.length;
+        this.items = this.items.concat(response['content']);
+        let end: number = this.items.length - 1;
         loader.dismiss();
+        console.log(this.page);
+        console.log(this.items);
+        this.loadImageUrls(start, end);
       },
       error => {
         loader.dismiss();
       });
   }
 
-  loadImageUrls() {
-    for (let i = 0; i < this.items.length; i++) {
+  loadImageUrls(start: number, end : number) {
+    for (let i = start; i < end; i++) {
       let item = this.items[i];
       this.produtoService
         .getSmalImageFromBucket(item.id)
@@ -65,10 +70,19 @@ export class ProdutosPage {
   }
 
   doRefresh(refresher) {
-
+    this.page = 0;
+    this.items = [];
     this.loadData();
     setTimeout(() => {
       refresher.complete();
+    }, 1000);
+  }
+
+  doInfinite(infiniteScroll) {
+    this.page++;
+    this.loadData();
+    setTimeout(() => {
+      infiniteScroll.complete();
     }, 1000);
   }
 }
