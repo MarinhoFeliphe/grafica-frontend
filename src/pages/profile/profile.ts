@@ -15,7 +15,7 @@ export class ProfilePage {
 
   cliente: ClienteDTO;
   picture: string;
-  cameraOn: boolean;
+  cameraOn: boolean = false;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
