@@ -29,15 +29,14 @@ export class CartPage {
   }
 
   loadImageUrls() {
-    for (let i = 0; i < this.items.length; i++) {
-      let item = this.items[i];
+    this.items.forEach(item => {
       this.produtoService
-        .getSmalImageFromBucket(item.produto.id)
-        .subscribe(response => {
-          item.produto.imageUrl = `${API_CONFIG.bucketBaseUrl}/prod${item.produto.id}-small.jpg`
-        }
-        , error => {});            
-    }
+          .getSmalImageFromBucket(item.produto.id)
+          .subscribe(response => {
+              item.produto.imageUrl = `${API_CONFIG.bucketBaseUrl}/prod${item.produto.id}-small.jpg`
+          }
+          , error => {}); 
+    })
   }
 
   removeItem(produto: ProdutoDTO) {
