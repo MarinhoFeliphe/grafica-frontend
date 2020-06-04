@@ -1,0 +1,7 @@
+export enum StatusPedido {
+    PENDENTE = "PENDENTE",
+    EM_ANDAMENTO = "EM ANDAMENTO",
+    FINALIZADO = "FINALIZADO",
+    ENTREGUE = "ENTREGUE",
+    CANCELADO = "CANCELADO",
+}

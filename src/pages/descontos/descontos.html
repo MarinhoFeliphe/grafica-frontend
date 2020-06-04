@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Cadastro de Descontos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form [formGroup]="formGroup">
+    <ion-item>
+        <ion-label stacked>Percentual do desconto</ion-label>
+        <ion-input formControlName="percentual" name="percentual" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Quantidade de pedidos</ion-label>
+        <ion-input formControlName="quantidadePedidos" name="quantidadePedidos" type="number"></ion-input>
+      </ion-item>
+
+    <button ion-button block type="submit" (onclick)="cadastrarDesconto()" [disabled]="formGroup.invalid">Cadastrar Desconto</button>
+  </form>
+</ion-content>

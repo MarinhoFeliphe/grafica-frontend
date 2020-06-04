@@ -17,6 +17,8 @@ import { ClienteService } from '../services/domain/cliente.service';
 import { ProdutoService } from '../services/domain/produto.service';
 import { CartService } from '../services/domain/cart.service';
 import { ImageUtilService } from '../services/image-util.service';
+import { DescontoService } from '../services/domain/desconto.service';
+import { PedidoService } from '../services/domain/pedido.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { ImageUtilService } from '../services/image-util.service';
     ClienteService,
     ProdutoService,
     CartService,
-    ImageUtilService
+    ImageUtilService,
+    DescontoService,
+    PedidoService
   ]
 })
 export class AppModule {}

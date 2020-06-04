@@ -1,0 +1,23 @@
+<ion-content padding>
+  <ion-card *ngFor="let pedido of pedidos">
+
+    <ion-item (click)="listarProdutos(pedido)">
+      <ion-card-title>{{ pedido.id }} {{ pedido.cliente.nome }}</ion-card-title>
+    </ion-item>
+  
+  
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Situação:</ion-label>
+        <ion-select [(ngModel)]="pedido.status" (ionChange)="onChange(pedido)">
+          <ion-option value="PENDENTE">Pendente</ion-option>
+          <ion-option value="EM_ANDAMENTO">Em andamento</ion-option>
+          <ion-option value="FINALIZADO">Finalizado</ion-option>
+          <ion-option value="ENTREGUE">Entregue</ion-option>
+          <ion-option value="CANCELADO">Cancelado</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-card-content>
+    
+  </ion-card>
+</ion-content>
